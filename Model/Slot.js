@@ -20,7 +20,7 @@ const slotSchema = new mongoose.Schema({
         },
         time: {
             type: String,
-            ennum:["10AM","12PM","2PM","4PM","6PM"],
+            enum:["10AM","12PM","2PM","4PM","6PM"],
             required: true
         }
     }]
