@@ -6,7 +6,15 @@ const router = require("express").Router();
 router.get("/slot", async (req, res) => {
   try {
     const {date} = req.query
-    const slots = await Slot.find({date});
+    const currentDate = date.split("-");
+
+    const day = parseInt(currentDate[0]);
+    const month = parseInt(currentDate[1]) - 1;
+    const year = parseInt(currentDate[2]);
+
+    const slotDate = new Date(Date.UTC(year, month, day));
+    
+    const slots = await Slot.find({date:slotDate});
     res.status(200).json({ slots });
   } catch (error) {
     console.error("Error getting slots:", error);
