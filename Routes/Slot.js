@@ -5,7 +5,8 @@ const router = require("express").Router();
 // Get all available slots
 router.get("/slot", async (req, res) => {
   try {
-    const slots = await Slot.find();
+    const {date} = req.query
+    const slots = await Slot.find({date});
     res.status(200).json({ slots });
   } catch (error) {
     console.error("Error getting slots:", error);
